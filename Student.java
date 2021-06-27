@@ -19,12 +19,21 @@ public class Student {
 
     }
 
+    Student(){
+        name = "";
+        classes = 10;
+        subjects = new ArrayList<>();
+        totalDaysTaught = 0;
+        averageMarks = 0.0;
+        totalEarnings = 0.0;
+    }
+
     //getter setter method for name instance
 
     public String getName(){
         return name;
     }
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -34,7 +43,7 @@ public class Student {
         return classes;
     }
 
-    public void setClasses() {
+    public void setClasses(int classes) {
         this.classes = classes;
     }
 
@@ -44,7 +53,7 @@ public class Student {
         return subjects;
     }
 
-    public void setSubjects(){
+    public void setSubjects(ArrayList<String>subjects){
         this.subjects = subjects;
     }
 
@@ -53,7 +62,7 @@ public class Student {
     public int getTotalDaysTaught(){
         return totalDaysTaught;
     }
-    public void setTotalDaysTaught(){
+    public void setTotalDaysTaught(int totalDaysTaught){
         this.totalDaysTaught = totalDaysTaught;
     }
 
@@ -62,7 +71,7 @@ public class Student {
     public Double getAveragMarks(){
         return averageMarks;
     }
-    public void setAverageMarks(){
+    public void setAverageMarks(Double averageMarks){
         this.averageMarks = averageMarks;
     }
 
@@ -72,16 +81,13 @@ public class Student {
         return totalEarnings;
     }
 
-    public void setTotalEarnings(){
+    public void setTotalEarnings(Double totalEarnings){
         this.totalEarnings = totalEarnings;
-    }
-
-    public void editMark() {
     }
 
     // Format String Syntax
     public void showStudent(){
-        System.out.format("%-18s%-15s%-15s%-15s%-15s%-15s\n" , name, classes, subjects.toString(), averageMarks, totalDaysTaught, totalEarnings);
+        System.out.format("%-18s%-15s%-15s%-20s%-15s%-15s\n" , name, classes, subjects.toString(), averageMarks, totalDaysTaught, totalEarnings);
     }
 }
 
