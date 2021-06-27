@@ -14,13 +14,18 @@ public class StudentManagement {
 
     //adding student in student array list
     StudentManagement(){
-        Student s1 = new Student("Tonoy", 10, makesubjectslist("physics, chemistry, math"), 10, 90.0, 5.0);
-        Student s2 = new Student("Nafija", 9, makesubjectslist("physics, chemistry, math"), 5, 87.0, 9.0);
-        Student s3 = new Student("Michale", 8, makesubjectslist("physics, chemistry, math"), 8, 89.0, 8.0);
-        Student s4 = new Student("D'costa", 8, makesubjectslist("physics, chemistry, math"), 7, 78.0, 7.0);
-        Student s5 = new Student("Akhenie", 8, makesubjectslist("physics, chemistry, math"), 9, 98.0, 8.0);
-        Student s6 = new Student("Riya", 8, makesubjectslist("physics, chemistry, math"), 10, 90.0, 8.0);
-        
+        Student s1 = new Student("Tonoy", 10, makesubjectslist("phy, chem "), 10, 90.0, 5.0);
+        Student s2 = new Student("Nafija", 9, makesubjectslist("phy, chem"), 5, 87.0, 9.0);
+        Student s3 = new Student("Michale", 8, makesubjectslist("phy, chem"), 8, 89.0, 8.0);
+        Student s4 = new Student("D'costa", 8, makesubjectslist("phy, chem"), 7, 78.0, 7.0);
+        Student s5 = new Student("Akhenie", 8, makesubjectslist("phy, chem"), 9, 98.0, 8.0);
+        Student s6 = new Student("Riya", 8, makesubjectslist("phy, chem"), 10, 90.0, 8.0);
+        studentList.add(s1);
+        studentList.add(s2);
+        studentList.add(s3);
+        studentList.add(s4);
+        studentList.add(s5);
+        studentList.add(s6);
        for (Student student : studentList) {
            addInfo(student);
        }
@@ -79,30 +84,33 @@ public class StudentManagement {
     // method to add a student
     public void addStudent(){
 
-        System.out.println(" In which class you want to add student? Class 8/9/10 ");
+        System.out.println(" In which class you want to add student? Class 8/9/10, choose one of them ! ");
         int clss = sc.nextInt();
-        sc.next();
+        
 
         System.out.println("Enter Student Name: ");
-        String name = sc.nextLine();
+        String name = sc.next();
+        //sc.next();
 
         System.out.println("Enter the subject s/he reads? multiple values allowed( please use comma for separting the subjects) : ");
-        String s = sc.nextLine();
+        String s = sc.next();
         ArrayList<String>sub = makesubjectslist(s);
+        //sc.next();
 
         System.out.println("Enter average marks of that student( please use fractional type value e.g. 8.0/8.8) : ");
         Double averageMarks = sc.nextDouble();
-        sc.next();
+        //sc.next();
 
         System.out.println("How many days you have taught that student? ");
         int totalDaysTaught = sc.nextInt();
-        sc.next();
+        //sc.next();
 
-        System.out.println("Total Earnings? : ");
+        System.out.println("Total Earnings( please use fractional type value e.g. 8.0/8.8)? : ");
         Double totalEarnings = sc.nextDouble();
-        sc.next();
+        //sc.next();
 
         Student newStd = new Student(name, clss, sub, totalDaysTaught, averageMarks, totalEarnings);
+        studentList.add(newStd);
         addInfo(newStd);
 
     }
@@ -111,12 +119,12 @@ public class StudentManagement {
     public void deleteStudent(){
         System.out.println("Enter the student name you want to delete from the list: ");
         System.out.println("--> Student Name: ");
-        String nmToDel = sc.nextLine();
+        String nmToDel = sc.next();
 
         Student stdDel = searchStudent(nmToDel);
         if(stdDel != null){
             studentList.remove(stdDel);
-            System.out.println(nmToDel + " is deleted from the list.");
+            System.out.println(nmToDel + " is deleted from the list. \n");
         }
         
     }
@@ -133,18 +141,18 @@ public class StudentManagement {
                 return student;
             }
         }
-        System.out.println("Student with name " + nameDelete);
-        return null;
+         System.out.printf("Student with name " + nameDelete + " not found \n");
+         return null;
     }
 
     public void showAll(){
-        view.showDetails(studentList, 2);
+        view.showDetails(studentList);
     }
 
     // show every information of the class
     public void showInfo(){
 
-        System.out.println("========================================================================================");
+        System.out.println("======================================================================================== \n");
 
         System.out.println("Number of Student: " + numberOfStudents);
 
@@ -158,7 +166,7 @@ public class StudentManagement {
         System.out.println("Number of Total Earnings of Class 9: "+ totalEarnings9);
         System.out.println("Number of Total Earnings of Class 10: "+ totalEarnings10);
 
-        System.out.println("Average Marks of All Students: " + totalAverageMarks / numberOfStudents);
+        System.out.println("Average Marks of All Students: " + totalAverageMarks/numberOfStudents);
 
         System.out.println("========================================================================================"); 
 
@@ -174,23 +182,33 @@ public class StudentManagement {
                 tmpList.add(ss);
             }
         }
-        view.showDetails(tmpList,1);
+        view.showDetails(tmpList);
 
     }
-    
+
     //method to show students
-    public void showStudent(String name){
+    public void showStudents(String name){
         Student newStu = searchStudent(name);
         if(newStu == null) return;
         ArrayList<Student> tmpList =  new ArrayList<Student>();
         tmpList.add(newStu);
-        view.showDetails(tmpList, 0);
+        view.showDetails(tmpList);
     }
 
     // method to edit student
-    public void editStudent(String name){
+    public void editStudent(String name, int option, Double value){
         Student newStu = searchStudent(name);
         if(newStu == null) return;
-        newStu.editMark();
+        if(option == 1){
+            newStu.setAverageMarks(value);
+        }
+        else if(option ==2){
+            newStu.setTotalDaysTaught((int)Math.round(value));
+        }
+        else if(option == 3){
+            newStu.setTotalEarnings(value);
+        }
+        System.out.println("Value Updated Successfully ! \n");
     }
+
 }
