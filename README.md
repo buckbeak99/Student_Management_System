@@ -2,7 +2,7 @@
 ## It is a basic java design pattern problem. I used Model View Controller Pattern to solve this. You want to keep track of the students that you teach. You are cringingly self-conscious about your productivity. So, you need to keep a ledger for all the information about these students. When you run the program, it will be able to accept command line inputs. And, will show the result in the command line. When engaging with the command line, it will give you some features
 
 ### Language
-`JAVA`
+![Java](https://img.shields.io/badge/java-%7396.svg?style=for-the-badge&logo=java&logoColor=white&color=007396)
 
 ### Features
   - `Add a Student`
